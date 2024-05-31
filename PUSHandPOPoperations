@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define STACK_SIZE 5
+
+int STACK[STACK_SIZE], TOP = -1;
+
+void push();
+void pop();
+void display();
+
+int main()
+{
+    int opt;
+    do{
+    printf("\nPlease choose an option:\n1. Push\n2. Pop\n3. Display\n4. Exit\n");
+    scanf("%d", &opt);
+    
+    switch(opt) {
+        case 1:
+            push();
+            break;
+        case 2:
+            pop();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            exit(0);
+            break;
+        default:
+            printf("Invalid option, please choose again.\n");
+            break;
+    }
+}while(opt!=4);
+    return 0;
+}
+
+void push()
+{
+    if (TOP == STACK_SIZE - 1) {
+        printf("Stack Overflow\n");
+        return;
+    }
+
+    int item;
+    printf("Please enter an element: ");
+    scanf("%d", &item);
+    
+    TOP++;
+    STACK[TOP] = item;
+}
+
+void pop()
+{
+    if (TOP == -1) {
+        printf("Stack is empty\n");
+        return;
+    }
+
+    int item = STACK[TOP];
+    TOP--;
+    
+}
+
+void display()
+{
+    if (TOP == -1) {
+        printf("Stack is empty\n");
+        return;
+    }
+
+    printf("Elements in the stack are:\n");
+    for (int i = TOP; i >= 0; i--) {
+        printf("%d\n", STACK[i]);
+    }
+}
